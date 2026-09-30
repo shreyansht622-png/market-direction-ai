@@ -1,307 +1,262 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Market Direction AI</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-  font-family:Arial,sans-serif;
-}
+*{box-sizing:border-box;margin:0;padding:0;font-family:Arial,sans-serif}
+body{background:#07111f;color:#fff;padding-bottom:75px}
+.header{padding:18px;background:#0c192b;border-bottom:1px solid #24364d}
+.logo{font-size:23px;font-weight:700}
+.sub{color:#8fa3bb;font-size:12px;margin-top:5px}
+.live{display:inline-block;margin-top:10px;padding:5px 9px;border-radius:20px;background:#143d2b;color:#45e08b;font-size:11px}
 
-body{
-  background:#07111f;
-  color:#ffffff;
-  min-height:100vh;
-}
+.container{padding:14px}
+.title{font-size:18px;margin:20px 0 10px}
 
-.header{
-  padding:20px 16px;
-  background:#0b1728;
-  border-bottom:1px solid #20344d;
-}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:#0d1c2e;border:1px solid #20354e;border-radius:14px;padding:15px}
+.label{font-size:12px;color:#91a5bb}
+.price{font-size:21px;font-weight:bold;margin:7px 0}
+.green{color:#35dc82}
+.red{color:#ff5c6c}
+.yellow{color:#ffd35c}
 
-.header h1{
-  font-size:24px;
-}
+.direction{text-align:center;padding:20px}
+.direction h1{font-size:34px;margin:8px 0}
 
-.header p{
-  margin-top:5px;
-  color:#8fa4bd;
-  font-size:13px;
-}
+.bar{height:9px;background:#1b2b3d;border-radius:10px;overflow:hidden;margin-top:7px}
+.fill{height:100%;background:#35dc82;width:68%}
 
-.demo{
-  display:inline-block;
-  margin-top:10px;
-  padding:5px 9px;
-  border-radius:5px;
-  background:#3b2d0b;
-  color:#ffd45a;
-  font-size:11px;
-}
+.row{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid #1d3045;font-size:13px}
+.row:last-child{border-bottom:0}
 
-.container{
-  padding:15px;
-  padding-bottom:90px;
-}
+.alert{border-left:4px solid #ffd35c}
+.alert-title{font-size:16px;font-weight:bold}
+.alert p{color:#b7c5d4;font-size:13px;line-height:1.5;margin-top:7px}
 
-.market-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-}
+.button-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{border:0;border-radius:10px;padding:13px;font-weight:bold;font-size:13px}
+.call{background:#176b42;color:white}
+.put{background:#8b2934;color:white}
+.exit{background:#33475d;color:white}
+.cancel{background:#5c4a1b;color:white}
 
-.card{
-  background:#0d1b2d;
-  border:1px solid #20344d;
-  border-radius:12px;
-  padding:15px;
-}
+.note{font-size:10px;color:#71869e;line-height:1.5;margin-top:12px}
 
-.card h3{
-  color:#9db0c5;
-  font-size:13px;
-  margin-bottom:8px;
-}
-
-.price{
-  font-size:22px;
-  font-weight:bold;
-}
-
-.up{
-  color:#35d07f;
-}
-
-.down{
-  color:#ff5c6c;
-}
-
-.section-title{
-  margin:22px 0 10px;
-  font-size:17px;
-}
-
-.direction{
-  text-align:center;
-  padding:22px 15px;
-}
-
-.direction h2{
-  font-size:30px;
-  margin:10px 0;
-}
-
-.confidence{
-  font-size:14px;
-  color:#aebed0;
-}
-
-.probability{
-  margin-top:18px;
-}
-
-.bar{
-  height:10px;
-  background:#1c2b3d;
-  border-radius:10px;
-  overflow:hidden;
-  margin-top:6px;
-}
-
-.bar-fill{
-  height:100%;
-  width:68%;
-  background:#35d07f;
-}
-
-.alert{
-  border-left:4px solid #ffd45a;
-}
-
-.alert p{
-  color:#bdc9d7;
-  margin-top:7px;
-  line-height:1.5;
-  font-size:13px;
-}
-
-.data-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
-}
-
-.data-item{
-  background:#101f32;
-  padding:12px;
-  border-radius:9px;
-}
-
-.data-item span{
-  display:block;
-  color:#8fa4bd;
-  font-size:12px;
-  margin-bottom:5px;
-}
-
-.bottom-nav{
-  position:fixed;
-  bottom:0;
-  left:0;
-  right:0;
-  height:65px;
-  background:#0b1728;
-  border-top:1px solid #20344d;
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-}
-
-.bottom-nav div{
-  text-align:center;
-  color:#8fa4bd;
-  font-size:11px;
-}
-
-.bottom-nav .active{
-  color:#ffffff;
-}
-
-.icon{
-  font-size:20px;
-  display:block;
-  margin-bottom:3px;
-}
+.nav{position:fixed;bottom:0;left:0;right:0;height:65px;background:#0b1728;border-top:1px solid #20344d;display:flex;justify-content:space-around;align-items:center}
+.nav div{text-align:center;color:#8398af;font-size:10px}
+.nav .active{color:white}
+.icon{font-size:19px;display:block;margin-bottom:3px}
 </style>
 </head>
 
 <body>
 
 <header class="header">
-  <h1>Market Direction AI</h1>
-  <p>NIFTY 50 & SENSEX Market Intelligence</p>
-  <span class="demo">DEMO VERSION</span>
+<div class="logo">📊 Market Direction AI</div>
+<div class="sub">NIFTY 50 • SENSEX • AI Market Intelligence</div>
+<div class="live">● SYSTEM ONLINE</div>
 </header>
 
 <main class="container">
 
-  <div class="market-grid">
+<div class="title">Market</div>
 
-    <div class="card">
-      <h3>NIFTY 50</h3>
-      <div class="price">25,850</div>
-      <div class="up">▲ +0.62%</div>
-    </div>
+<div class="grid">
 
-    <div class="card">
-      <h3>SENSEX</h3>
-      <div class="price">84,650</div>
-      <div class="up">▲ +0.55%</div>
-    </div>
+<div class="card">
+<div class="label">NIFTY 50</div>
+<div class="price">25,850</div>
+<div class="green">▲ +0.62%</div>
+</div>
 
-  </div>
+<div class="card">
+<div class="label">SENSEX</div>
+<div class="price">84,650</div>
+<div class="green">▲ +0.55%</div>
+</div>
 
-  <h2 class="section-title">Tomorrow Direction</h2>
+</div>
 
-  <div class="card direction">
 
-    <h3>NIFTY 50</h3>
+<div class="title">अगले ट्रेडिंग दिन की दिशा</div>
 
-    <h2 class="up">UP ↑</h2>
+<div class="card direction">
 
-    <div class="confidence">
-      AI Confidence: 68%
-    </div>
+<div class="label">NIFTY 50</div>
 
-    <div class="probability">
-      <div style="display:flex;justify-content:space-between;font-size:12px;">
-        <span>UP Probability</span>
-        <span>68%</span>
-      </div>
+<h1 class="green">UP ↑</h1>
 
-      <div class="bar">
-        <div class="bar-fill"></div>
-      </div>
-    </div>
+<div class="label">Demo Probability</div>
 
-  </div>
+<div style="margin-top:12px">
+<div style="display:flex;justify-content:space-between;font-size:12px">
+<span>ऊपर</span><b>68%</b>
+</div>
+<div class="bar"><div class="fill"></div></div>
+</div>
 
-  <h2 class="section-title">Market Alert</h2>
+<div style="margin-top:14px;color:#aebdcd;font-size:12px">
+Confidence: Moderate
+</div>
 
-  <div class="card alert">
-    <h3>⚠ Important Alert</h3>
-    <p>
-      Sudden news, global markets, FII/DII activity,
-      VIX and option-chain changes can change the market direction.
-    </p>
-  </div>
+</div>
 
-  <h2 class="section-title">Market Data</h2>
 
-  <div class="data-grid">
+<div class="title">🚨 Market Alert</div>
 
-    <div class="data-item">
-      <span>India VIX</span>
-      <b>14.20</b>
-    </div>
+<div class="card alert">
 
-    <div class="data-item">
-      <span>PCR</span>
-      <b>1.08</b>
-    </div>
+<div class="alert-title yellow">
+⚠ High Impact Alert
+</div>
 
-    <div class="data-item">
-      <span>FII</span>
-      <b class="down">-₹850 Cr</b>
-    </div>
+<p>
+अचानक बड़ी खबर आने पर सिस्टम NIFTY और SENSEX
+की दिशा दोबारा analyse करेगा।
+</p>
 
-    <div class="data-item">
-      <span>DII</span>
-      <b class="up">+₹1,120 Cr</b>
-    </div>
+<p class="yellow">
+Demo: संभावित दिशा बदल सकती है
+</p>
 
-  </div>
+</div>
 
-  <h2 class="section-title">AI Status</h2>
 
-  <div class="card">
-    <h3>Signal</h3>
-    <div style="margin-top:8px;font-size:20px;" class="up">
-      CALL BIAS
-    </div>
-    <p style="margin-top:8px;color:#8fa4bd;font-size:12px;">
-      Demo signal — real-time AI engine will be connected later.
-    </p>
-  </div>
+<div class="title">AI Analysis</div>
+
+<div class="card">
+
+<div class="row">
+<span>Option Chain</span>
+<b class="green">Positive</b>
+</div>
+
+<div class="row">
+<span>Put/Call Ratio</span>
+<b>1.08</b>
+</div>
+
+<div class="row">
+<span>India VIX</span>
+<b>14.20</b>
+</div>
+
+<div class="row">
+<span>FII Activity</span>
+<b class="red">Negative</b>
+</div>
+
+<div class="row">
+<span>DII Activity</span>
+<b class="green">Positive</b>
+</div>
+
+<div class="row">
+<span>Global Market</span>
+<b class="green">Positive</b>
+</div>
+
+</div>
+
+
+<div class="title">Support / Resistance</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="label">Support</div>
+<div class="price green">25,600</div>
+</div>
+
+<div class="card">
+<div class="label">Resistance</div>
+<div class="price red">26,000</div>
+</div>
+
+</div>
+
+
+<div class="title">Order Panel</div>
+
+<div class="card">
+
+<div class="button-grid">
+
+<button class="call">BUY CALL</button>
+<button class="put">BUY PUT</button>
+<button class="exit">EXIT POSITION</button>
+<button class="cancel">CANCEL ORDER</button>
+
+</div>
+
+<div class="note">
+Order buttons अभी Demo Mode में हैं। Broker API connect होने के बाद ही
+ये वास्तविक order भेजेंगे।
+</div>
+
+</div>
+
+
+<div class="title">System Safety</div>
+
+<div class="card">
+
+<div class="row">
+<span>Signal Status</span>
+<b class="green">ACTIVE</b>
+</div>
+
+<div class="row">
+<span>Unclear Market</span>
+<b>NO TRADE</b>
+</div>
+
+<div class="row">
+<span>Prediction Type</span>
+<b>Probability Based</b>
+</div>
+
+<p class="note">
+यह सिस्टम भविष्य की दिशा की गारंटी नहीं देता। अचानक समाचार,
+volatility और market conditions के कारण prediction बदल सकता है।
+</p>
+
+</div>
 
 </main>
 
-<nav class="bottom-nav">
-  <div class="active">
-    <span class="icon">📊</span>
-    Dashboard
-  </div>
 
-  <div>
-    <span class="icon">⛓️</span>
-    Option Chain
-  </div>
+<nav class="nav">
 
-  <div>
-    <span class="icon">📰</span>
-    News
-  </div>
+<div class="active">
+<span class="icon">📊</span>
+Home
+</div>
 
-  <div>
-    <span class="icon">⚙️</span>
-    Settings
-  </div>
+<div>
+<span class="icon">📈</span>
+NIFTY
+</div>
+
+<div>
+<span class="icon">📉</span>
+SENSEX
+</div>
+
+<div>
+<span class="icon">🔔</span>
+Alerts
+</div>
+
+<div>
+<span class="icon">⚙️</span>
+Settings
+</div>
+
 </nav>
 
 </body>
