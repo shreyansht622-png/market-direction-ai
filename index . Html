@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Market Direction AI</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  font-family:Arial,sans-serif;
+}
+
+body{
+  background:#07111f;
+  color:#ffffff;
+  min-height:100vh;
+}
+
+.header{
+  padding:20px 16px;
+  background:#0b1728;
+  border-bottom:1px solid #20344d;
+}
+
+.header h1{
+  font-size:24px;
+}
+
+.header p{
+  margin-top:5px;
+  color:#8fa4bd;
+  font-size:13px;
+}
+
+.demo{
+  display:inline-block;
+  margin-top:10px;
+  padding:5px 9px;
+  border-radius:5px;
+  background:#3b2d0b;
+  color:#ffd45a;
+  font-size:11px;
+}
+
+.container{
+  padding:15px;
+  padding-bottom:90px;
+}
+
+.market-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+
+.card{
+  background:#0d1b2d;
+  border:1px solid #20344d;
+  border-radius:12px;
+  padding:15px;
+}
+
+.card h3{
+  color:#9db0c5;
+  font-size:13px;
+  margin-bottom:8px;
+}
+
+.price{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.up{
+  color:#35d07f;
+}
+
+.down{
+  color:#ff5c6c;
+}
+
+.section-title{
+  margin:22px 0 10px;
+  font-size:17px;
+}
+
+.direction{
+  text-align:center;
+  padding:22px 15px;
+}
+
+.direction h2{
+  font-size:30px;
+  margin:10px 0;
+}
+
+.confidence{
+  font-size:14px;
+  color:#aebed0;
+}
+
+.probability{
+  margin-top:18px;
+}
+
+.bar{
+  height:10px;
+  background:#1c2b3d;
+  border-radius:10px;
+  overflow:hidden;
+  margin-top:6px;
+}
+
+.bar-fill{
+  height:100%;
+  width:68%;
+  background:#35d07f;
+}
+
+.alert{
+  border-left:4px solid #ffd45a;
+}
+
+.alert p{
+  color:#bdc9d7;
+  margin-top:7px;
+  line-height:1.5;
+  font-size:13px;
+}
+
+.data-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.data-item{
+  background:#101f32;
+  padding:12px;
+  border-radius:9px;
+}
+
+.data-item span{
+  display:block;
+  color:#8fa4bd;
+  font-size:12px;
+  margin-bottom:5px;
+}
+
+.bottom-nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  right:0;
+  height:65px;
+  background:#0b1728;
+  border-top:1px solid #20344d;
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+}
+
+.bottom-nav div{
+  text-align:center;
+  color:#8fa4bd;
+  font-size:11px;
+}
+
+.bottom-nav .active{
+  color:#ffffff;
+}
+
+.icon{
+  font-size:20px;
+  display:block;
+  margin-bottom:3px;
+}
+</style>
+</head>
+
+<body>
+
+<header class="header">
+  <h1>Market Direction AI</h1>
+  <p>NIFTY 50 & SENSEX Market Intelligence</p>
+  <span class="demo">DEMO VERSION</span>
+</header>
+
+<main class="container">
+
+  <div class="market-grid">
+
+    <div class="card">
+      <h3>NIFTY 50</h3>
+      <div class="price">25,850</div>
+      <div class="up">▲ +0.62%</div>
+    </div>
+
+    <div class="card">
+      <h3>SENSEX</h3>
+      <div class="price">84,650</div>
+      <div class="up">▲ +0.55%</div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Tomorrow Direction</h2>
+
+  <div class="card direction">
+
+    <h3>NIFTY 50</h3>
+
+    <h2 class="up">UP ↑</h2>
+
+    <div class="confidence">
+      AI Confidence: 68%
+    </div>
+
+    <div class="probability">
+      <div style="display:flex;justify-content:space-between;font-size:12px;">
+        <span>UP Probability</span>
+        <span>68%</span>
+      </div>
+
+      <div class="bar">
+        <div class="bar-fill"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">Market Alert</h2>
+
+  <div class="card alert">
+    <h3>⚠ Important Alert</h3>
+    <p>
+      Sudden news, global markets, FII/DII activity,
+      VIX and option-chain changes can change the market direction.
+    </p>
+  </div>
+
+  <h2 class="section-title">Market Data</h2>
+
+  <div class="data-grid">
+
+    <div class="data-item">
+      <span>India VIX</span>
+      <b>14.20</b>
+    </div>
+
+    <div class="data-item">
+      <span>PCR</span>
+      <b>1.08</b>
+    </div>
+
+    <div class="data-item">
+      <span>FII</span>
+      <b class="down">-₹850 Cr</b>
+    </div>
+
+    <div class="data-item">
+      <span>DII</span>
+      <b class="up">+₹1,120 Cr</b>
+    </div>
+
+  </div>
+
+  <h2 class="section-title">AI Status</h2>
+
+  <div class="card">
+    <h3>Signal</h3>
+    <div style="margin-top:8px;font-size:20px;" class="up">
+      CALL BIAS
+    </div>
+    <p style="margin-top:8px;color:#8fa4bd;font-size:12px;">
+      Demo signal — real-time AI engine will be connected later.
+    </p>
+  </div>
+
+</main>
+
+<nav class="bottom-nav">
+  <div class="active">
+    <span class="icon">📊</span>
+    Dashboard
+  </div>
+
+  <div>
+    <span class="icon">⛓️</span>
+    Option Chain
+  </div>
+
+  <div>
+    <span class="icon">📰</span>
+    News
+  </div>
+
+  <div>
+    <span class="icon">⚙️</span>
+    Settings
+  </div>
+</nav>
+
+</body>
+</html>
